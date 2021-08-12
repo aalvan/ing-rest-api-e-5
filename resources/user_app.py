@@ -3,14 +3,20 @@ from flask_restful import Resource, reqparse
 from flask_jwt import jwt_required
 from sqlalchemy.orm import query
 from models.user_app import UserAppModel
+import requests
 class UserApp(Resource):
     parser = reqparse.RequestParser()
-    ''''
-    parser.add_argument('permission',
+    
+    parser.add_argument('descripcion',
             type=str,
             required = True,
             help = " This field cannot be left blank "
-        )'''
+        )
+    parser.add_argument('rut',
+            type=int,
+            required = True,
+            help = " This field cannot be left blank "
+        )
     #@jwt_required()
     def get(self, name):
         user_app = UserAppModel.find_by_name(name)
@@ -28,7 +34,10 @@ class UserApp(Resource):
         if UserAppModel.find_by_name(name):
             return {'message':"An user with name '{}' already exists.".format(name)},400
         request_data = UserApp.parser.parse_args() 
-        user_app = UserAppModel(name,request_data['permission'])
+        user_app = UserAppModel(name)
+
+        data = {"id_maker":request_data['rut'] ,"nombre": name,"descripcion": request_data['descripcion'],}
+        resp = requests.post("http://3.139.99.125:8080/proyectos", json=data)
         try:
             user_app.save_to_db()
         except:

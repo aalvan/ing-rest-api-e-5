@@ -21,15 +21,8 @@ class UserApp(Resource):
     def get(self, name):
         user_app = UserAppModel.find_by_name(name)
         if user_app:
-            print (user_app.json())
             return user_app.json()
         return {'message':'User_app not found'},404
-    def get(self, rut):
-        user_app = UserAppModel.find_by_rut(rut) 
-        if user_app:
-            return user_app.json()
-        return {'message':'User_app not found'},404
-
     def post(self, name):
         if UserAppModel.find_by_name(name):
             return {'message':"An user with name '{}' already exists.".format(name)},400
@@ -62,7 +55,12 @@ class UserApp(Resource):
         user.save_to_db()
         return user.json()
     
-
+class UserAppRut(Resource):
+    def get(self, rut):
+        user_app = UserAppModel.find_by_rut(rut) 
+        if user_app:
+            return user_app.json()
+        return {'message':'User_app not found'},404
 class UserList(Resource):
     def get(self):
         return {'users': [user.json() for user in UserAppModel.query.all()]} # return {'items': list(map(lambda x: x.json(), ItemModel.query.all()))} with lambda expressions

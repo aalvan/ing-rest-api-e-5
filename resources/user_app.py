@@ -34,7 +34,7 @@ class UserApp(Resource):
         if UserAppModel.find_by_name(name):
             return {'message':"An user with name '{}' already exists.".format(name)},400
         request_data = UserApp.parser.parse_args() 
-        user_app = UserAppModel(name)
+        user_app = UserAppModel(name,request_data['rut'])
 
         data = {"id_maker":request_data['rut'] ,"nombre": name,"descripcion": request_data['descripcion'],}
         resp = requests.post("http://3.139.99.125:8080/proyectos", json=data)

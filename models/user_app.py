@@ -10,8 +10,9 @@ class UserAppModel(db.Model):
     campus = db.Column(db.String(80))
     career = db.Column(db.Integer)
     permission = db.Column(db.String(80))
-    def __init__(self, name):
+    def __init__(self, name,rut):
         self.name = name
+        self.rut = rut
         
     
     def json(self):

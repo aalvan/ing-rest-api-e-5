@@ -25,7 +25,7 @@ jwt = JWT(app, authenticate, identity) #/auth
 
 
 # Rutas Estudiantes
-api.add_resource(UserApp, '/user/<string:name>')
+api.add_resource(UserApp, '/student/<string:name>')
 #api.add_resource(UserApp, '/student/<string:name>')
 #api.add_resource(UserApp, '/student/rut/<int:rut>')
 api.add_resource(ProyectosList, '/user/rut/<int:rut>/proyectos')
@@ -42,7 +42,7 @@ api.add_resource(ManagerAssistant, '/assistant/manager/<int:manager>')
 api.add_resource(RangeAssistant, '/assistant/range/<string:range>')
 api.add_resource(ManagerRange, '/assistant/manager/<int:manager>/range/<string:range>')
 api.add_resource(AssistantsList, '/assistant/all')
-
+db.init_app(app)
 if __name__ == '__main__':
-    db.init_app(app)
+    
     app.run(port=5000,debug=True)

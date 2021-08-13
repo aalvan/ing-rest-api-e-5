@@ -53,7 +53,13 @@ while True:
         for proyecto in proyectos:
             print(proyecto)
     elif (option == 2):
-        pass
+        nombre = input("\nIngrese el nombre: ")
+        rut = input("\nIngrese el rut: ")
+        descripcion = input("\nIngrese la descripcion del proyecto: ")
+
+        data = {'rut': rut, 'descripcion': descripcion}
+        resp = requests.post(url + '/student/' + nombre, json=data)
+        
     elif (option == 3):
         pass
     elif (option == 4):

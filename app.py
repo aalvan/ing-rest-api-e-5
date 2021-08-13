@@ -5,7 +5,7 @@ from flask_restful import Api
 from flask_jwt import JWT
 
 from security import authenticate, identity
-from resources.user_app import Campus, CampusCareer, Career, UserApp, UserList
+from resources.user_app import Campus, CampusCareer, Career, UserApp, UserAppRut, UserList
 from resources.assistant_app import AssistantApp, AssistantsList, ManagerAssistant, ManagerRange, RangeAssistant
 from resources.proyectos import ProyectosList
 from resources.user import UserRegister
@@ -27,7 +27,7 @@ jwt = JWT(app, authenticate, identity) #/auth
 # Rutas Estudiantes
 api.add_resource(UserApp, '/student/<string:name>')
 #api.add_resource(UserApp, '/student/<string:name>')
-#api.add_resource(UserApp, '/student/rut/<int:rut>')
+api.add_resource(UserAppRut, '/student/rut/<int:rut>')
 api.add_resource(ProyectosList, '/student/rut/<int:rut>/proyectos')
 api.add_resource(Campus, '/student/campus/<string:campus>')
 api.add_resource(Career, '/student/career/<int:career>')

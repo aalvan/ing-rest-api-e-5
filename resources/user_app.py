@@ -17,6 +17,11 @@ class UserApp(Resource):
             required = True,
             help = " This field cannot be left blank "
         )
+    parser.add_argument('nombre_proyecto',
+            type=str,
+            required = True,
+            help = " This field cannot be left blank "
+        )
     #@jwt_required()
     def get(self, name):
         user_app = UserAppModel.find_by_name(name)
@@ -29,7 +34,7 @@ class UserApp(Resource):
         request_data = UserApp.parser.parse_args() 
         user_app = UserAppModel(name,request_data['rut'])
 
-        data = {"id_maker":request_data['rut'] ,"nombre": name,"descripcion": request_data['descripcion'],}
+        data = {"id_maker":request_data['rut'] ,"nombre": request_data['nombre_proyecto'],"descripcion": request_data['descripcion'],}
         resp = requests.post("http://3.139.99.125:8080/proyectos", json=data)
         try:
             user_app.save_to_db()

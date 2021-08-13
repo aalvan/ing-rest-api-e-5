@@ -60,14 +60,5 @@ while True:
         data = {'rut': rut, 'descripcion': descripcion}
         resp = requests.post(url + '/student/' + nombre, json=data)
         print("proyecto creado")
-        
-    elif (option == 3):
-        pass
-    elif (option == 4):
-        pass
-    elif (option == 5):
-        pass
-    elif (option == 6):
-        break
     else:
         print("\nIngrese una opción válida")

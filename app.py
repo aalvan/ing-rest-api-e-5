@@ -26,7 +26,6 @@ jwt = JWT(app, authenticate, identity) #/auth
 
 # Rutas Estudiantes
 api.add_resource(UserApp, '/student/<string:name>')
-#api.add_resource(UserApp, '/student/<string:name>')
 api.add_resource(UserAppRut, '/student/rut/<int:rut>')
 api.add_resource(ProyectosList, '/student/rut/<int:rut>/proyectos')
 api.add_resource(Campus, '/student/campus/<string:campus>')

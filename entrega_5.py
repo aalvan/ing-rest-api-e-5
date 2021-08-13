@@ -59,6 +59,7 @@ while True:
 
         data = {'rut': rut, 'descripcion': descripcion}
         resp = requests.post(url + '/student/' + nombre, json=data)
+        print("proyecto creado")
         
     elif (option == 3):
         pass

@@ -16,7 +16,7 @@ class UserAppModel(db.Model):
     
     def json(self):
         #return {'name':self.name, 'permission': self.permission}
-        return {'name':self.name}
+        return {'name':self.name, 'rut':self.rut}
     @classmethod
     def find_by_name(cls,name):
         return cls.query.filter_by(name=name).first()
